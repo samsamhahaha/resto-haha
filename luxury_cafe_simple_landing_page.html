@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cafe Resto</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+html{scroll-behavior:smooth;}
+
+body{background:#0f0f0f;color:#eee;overflow-x:hidden;}
+
+nav{
+position:fixed;top:0;width:100%;
+background:#111;padding:18px 40px;
+display:flex;justify-content:space-between;align-items:center;
+border-bottom:1px solid #c8a96a33;z-index:1000;
+}
+
+nav h1{color:#c8a96a;font-weight:700;}
+nav a{color:#ddd;text-decoration:none;margin-left:25px;font-weight:500;transition:.25s;}
+nav a:hover{color:#c8a96a;}
+
+section{
+min-height:100vh;
+padding:110px 10%;
+display:flex;flex-direction:column;justify-content:center;
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.fade-text span{
+opacity:0;
+display:inline-block;
+animation:letterFade .6s forwards;
+}
+
+@keyframes letterFade{
+from{opacity:0;transform:translateY(10px);} 
+to{opacity:1;transform:translateY(0);} 
+}
+
+.landing{text-align:center;}
+.landing h2{font-size:48px;color:#c8a96a;margin-bottom:15px;}
+.landing p{color:#aaa;margin-bottom:40px;}
+
+.landing-images{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;}
+.landing-images img{
+width:260px;height:180px;object-fit:cover;border-radius:20px;
+transition:.2s ease;
+}
+.landing-images img:hover{
+transform:scale(1.04);
+filter:brightness(1.08);
+}
+
+.menu h2,.about h2{color:#c8a96a;margin-bottom:25px;}
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+.coffee{
+background:#151515;border-radius:16px;overflow:hidden;
+transition:.25s ease;
+}
+.coffee:hover{transform:translateY(-6px);} 
+.coffee img{width:100%;height:170px;object-fit:cover;}
+.coffee div{padding:15px;}
+.about p{max-width:600px;color:#bbb;line-height:1.6;}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h1>Cafe Resto</h1>
+<div>
+<a href="#home">Home</a>
+<a href="#menu">Menu</a>
+<a href="#about">About</a>
+</div>
+</nav>
+
+<section id="home" class="landing">
+<h2 class="fade-text">
+<span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span>
+<span>&nbsp;</span>
+<span>B</span><span>o</span><span>l</span><span>d</span>
+<span>&nbsp;</span>
+<span>C</span><span>o</span><span>f</span><span>f</span><span>e</span><span>e</span>
+</h2>
+<p>Luxury vibe without luxury price.</p>
+
+<div class="landing-images">
+<div>
+<a href="#menu">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="menu">
+</a>
+<p style="margin-top:8px;color:#c8a96a;font-weight:500;text-align:center;">Menu</p>
+</div>
+<div>
+<a href="#about">
+<img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24" alt="about">
+</a>
+<p style="margin-top:8px;color:#c8a96a;font-weight:500;text-align:center;">About Us</p>
+</div>
+</div>
+</section>
+
+<section id="menu" class="menu">
+<h2>Our Coffees</h2>
+<div class="menu-grid">
+<div class="coffee">
+<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+<div>
+<h3>Espresso</h3>
+<p>Strong bold straight coffee shot.</p>
+</div>
+</div>
+<div class="coffee">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+<div>
+<h3>Latte</h3>
+<p>Smooth milk balanced espresso.</p>
+</div>
+</div>
+<div class="coffee">
+<img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571">
+<div>
+<h3>Cappuccino</h3>
+<p>Foamy rich cafe classic.</p>
+</div>
+</div>
+<div class="coffee">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<div>
+<h3>Mocha</h3>
+<p>Chocolate infused coffee blend.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" class="about">
+<h2>About Us</h2>
+<p>
+Cafe Resto gives a premium cafe vibe without premium prices. Clean aesthetic, good coffee, relaxed space.
+</p>
+<p style="margin-top:30px;color:#777;text-align:center;display:flex;justify-content:center;">© 2026 Cafe Resto</p>
+</section>
+
+<script>
+const sections=document.querySelectorAll('section');
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+  e.target.classList.add('visible');
+}else{
+  e.target.classList.remove('visible');
+}
+});
+},{threshold:.25});
+sections.forEach(sec=>obs.observe(sec));
+</script>
+
+</body>
+</html>
